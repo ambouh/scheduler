@@ -1,0 +1,16 @@
+<section>
+  <form class="example-form" [formGroup]="queryForm" >
+    <mat-form-field class="example-full-width">
+      <mat-label>First Name</mat-label>
+      <input type="text" matInput formControlName="first" placeholder="Ex. John">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Last Name</mat-label>
+      <input type="text" matInput formControlName="last" placeholder="Ex. Doe">
+    </mat-form-field>
+    <button mat-mini-fab color="primary" aria-label="add employee"
+            (click)="addEmployee()" >
+      <mat-icon>add</mat-icon>
+    </button>
+  </form>
+</section>

@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import {ScheduleService} from '../../services/schedule.service';
 import {Employee} from '../../models/employee';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {first} from 'rxjs/operators';
+import {formatDate} from '@angular/common';
+import {Shift} from '../../models/shift';
+import {ScheduleViewComponent} from '../../components/schedule-view/schedule-view.component';
+import {AddShiftComponent} from '../../components/add-shift/add-shift.component';
 
 @Component({
   selector: 'app-playground',
@@ -11,28 +15,42 @@ import {first} from 'rxjs/operators';
 })
 export class PlaygroundComponent implements OnInit {
   title = 'Hello World';
-  queryForm: FormGroup = this.fb.group( {
-    first: [''],
-    last: [''],
-    email: [''],
-    id: [''],
-  });
-
-  constructor(private scheduleService: ScheduleService, private fb: FormBuilder) { }
+  @ViewChild('appendHere', { read: ViewContainerRef })
+  VCR: ViewContainerRef;
+  @ViewChild('appendShiftOrRegister', { read: ViewContainerRef })
+  editor: ViewContainerRef;
+  isDisplayingScheduleView: boolean | undefined;
+  isDisplayingEditor: boolean | undefined;
+  constructor(private scheduleService: ScheduleService, private fb: FormBuilder, private CFR: ComponentFactoryResolver) { }
   ngOnInit(): void {
-  }
-  get first(): any {
-    return this.queryForm.get('first');
-  }
-  get last(): any {
-    return this.queryForm.get('last');
-  }
-  get email(): any {
-    return this.queryForm.get('email');
-  }
-  addEmployee(): void{
-    const newEmp: Employee = {email: 'johndoe@email.com', first: this.first.value, last: this.last.value, schedule: []};
-    this.scheduleService.addEmployee(newEmp);
+    this.isDisplayingScheduleView = false;
+    this.isDisplayingEditor = false;
   }
 
+  displayScheduleView() {
+    if (this.isDisplayingScheduleView === false) {
+      let componentFactory = this.CFR.resolveComponentFactory(ScheduleViewComponent);
+      let childComponentRef = this.VCR.createComponent(componentFactory);
+      this.isDisplayingScheduleView = true;
+    }
+  }
+  displayAddShift() {
+    let componentFactory = this.CFR.resolveComponentFactory(AddShiftComponent);
+    let childComponentRef = this.editor.createComponent(componentFactory);
+    const emp = this.scheduleService.findEmployee(1);
+    if ( emp != null) {
+      childComponentRef.instance.employee = emp;
+      childComponentRef.instance.removeEditor = (): void => this.removeEditor();
+      this.isDisplayingEditor = true;
+    }
+
+  }
+  removeScheduleView() {
+   this.VCR.detach(0);
+   this.isDisplayingScheduleView = false;
+  }
+  removeEditor(): void {
+    this.editor.remove(0);
+    this.isDisplayingEditor = false;
+  }
 }
