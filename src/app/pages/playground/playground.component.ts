@@ -14,6 +14,7 @@ import {AddShiftComponent} from '../../components/add-shift/add-shift.component'
   styleUrls: ['./playground.component.scss']
 })
 export class PlaygroundComponent implements OnInit {
+  constructor(private scheduleService: ScheduleService, private fb: FormBuilder, private CFR: ComponentFactoryResolver) { }
   title = 'Hello World';
   @ViewChild('appendHere', { read: ViewContainerRef })
   VCR: ViewContainerRef;
@@ -21,25 +22,28 @@ export class PlaygroundComponent implements OnInit {
   editor: ViewContainerRef;
   isDisplayingScheduleView: boolean | undefined;
   isDisplayingEditor: boolean | undefined;
-  constructor(private scheduleService: ScheduleService, private fb: FormBuilder, private CFR: ComponentFactoryResolver) { }
+  emp = this.scheduleService.findEmployee(1);
   ngOnInit(): void {
     this.isDisplayingScheduleView = false;
     this.isDisplayingEditor = false;
   }
-
   displayScheduleView() {
     if (this.isDisplayingScheduleView === false) {
       let componentFactory = this.CFR.resolveComponentFactory(ScheduleViewComponent);
       let childComponentRef = this.VCR.createComponent(componentFactory);
-      this.isDisplayingScheduleView = true;
+      if ( this.emp != null) {
+        childComponentRef.instance.employee = this.emp;
+        // childComponentRef.instance.removeEditor = (): void => this.removeEditor();
+        this.isDisplayingScheduleView = true;
+      }
     }
   }
   displayAddShift() {
     let componentFactory = this.CFR.resolveComponentFactory(AddShiftComponent);
     let childComponentRef = this.editor.createComponent(componentFactory);
-    const emp = this.scheduleService.findEmployee(1);
-    if ( emp != null) {
-      childComponentRef.instance.employee = emp;
+
+    if ( this.emp != null) {
+      childComponentRef.instance.employee = this.emp;
       childComponentRef.instance.removeEditor = (): void => this.removeEditor();
       this.isDisplayingEditor = true;
     }

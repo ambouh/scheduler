@@ -41,8 +41,11 @@ export class AddShiftComponent implements OnInit {
 
     if (emp != null) {
       this.scheduleService.addShift(emp, newShift);
-      this.removeEditor();
+      this.removeEdit();
     }
+  }
+  removeEdit(){
+    this.scheduleService.removeEditor();
   }
 
 }

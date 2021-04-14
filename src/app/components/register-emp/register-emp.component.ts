@@ -33,6 +33,7 @@ export class RegisterEmpComponent implements OnInit {
     const newEmp: Employee = {
       id: this.scheduleService.newEmpID(), email: 'johndoe@email.com', first: this.first.value, last: this.last.value, schedule: []};
     this.scheduleService.addEmployee(newEmp);
+    this.scheduleService.removeEditor();
   }
 
 }

@@ -1,8 +1,7 @@
-import { Injectable } from '@angular/core';
+import {Injectable, ViewContainerRef} from '@angular/core';
 import {Employee} from '../models/employee';
 import {BehaviorSubject} from 'rxjs';
 import {Shift} from '../models/shift';
-import {forEachComment} from 'tslint';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +9,6 @@ import {forEachComment} from 'tslint';
 export class ScheduleService {
   // VARIABLES
   private dataStore: { employees: Employee[] };
-  // private _emp: BehaviorSubject<Employee[]>;
   emp: Employee[] = [
     {
       id: 1,
@@ -33,12 +31,42 @@ export class ScheduleService {
       ]
     }
   ];
+  // SCHEDULE-VIEW
+  isDisplayingScheduleView: boolean;
+  scheduleViewRef: ViewContainerRef;
+  // ADD SHIFT
+  isDisplayingEditor: boolean;
+  editorRef: ViewContainerRef;
    // CONSTRUCTOR
   constructor() {
     this.dataStore = {
       employees: this.emp
     };
+    this.isDisplayingScheduleView = false;
   }
+  // SCHEDULE-VIEW
+  setIsDisplayingScheduleView(result: boolean) {
+    this.isDisplayingScheduleView = result;
+  }
+  setScheduleViewRef(ref: ViewContainerRef){
+    this.scheduleViewRef = ref;
+  }
+  removeScheduleView(){
+    this.scheduleViewRef.detach(0);
+    this.setIsDisplayingScheduleView(false);
+  }
+  // ADD-EDITOR
+  setIsDisplayingEditor(result: boolean) {
+    this.isDisplayingEditor = result;
+  }
+  setEditorRef(ref: ViewContainerRef) {
+    this.editorRef = ref;
+  }
+  removeEditor(){
+    this.editorRef.clear();
+    this.setIsDisplayingEditor(false);
+  }
+  // BUSINESS-LOGIC STUFF
   newEmpID(): number {
     return this.dataStore.employees.length + 1;
   }

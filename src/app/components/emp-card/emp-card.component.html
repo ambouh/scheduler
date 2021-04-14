@@ -1,1 +1,10 @@
-<p>emp-card works!</p>
+<mat-card>
+  First Name: {{employee.first}}
+  Last Name: {{employee.last}}
+  EMPLOYEE
+
+  <button mat-stroked-button color="primary" aria-label="display add shift form"
+          (click)="this.displayScheduleView()">
+    view schedule
+  </button>
+</mat-card>
