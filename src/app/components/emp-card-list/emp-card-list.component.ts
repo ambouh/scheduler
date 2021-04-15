@@ -19,20 +19,11 @@ import {RegisterEmpComponent} from '../register-emp/register-emp.component';
   styleUrls: ['./emp-card-list.component.scss']
 })
 export class EmpCardListComponent implements OnInit {
+  employeeList: Employee[];
   constructor(private scheduleService: ScheduleService,
               private CFR: ComponentFactoryResolver) { }
-  employeeList: Employee[];
+
   ngOnInit(): void {
     this.employeeList = this.scheduleService.loadEmployees();
-  }
-
-  displayRegisterEmp() {
-    if (!this.scheduleService.isDisplayingEditor) {
-      this.scheduleService.setIsDisplayingEditor(true);
-      const componentFactory = this.CFR.resolveComponentFactory(RegisterEmpComponent);
-      const childComponentRef = this.scheduleService.scheduleViewRef.createComponent(componentFactory);
-    } else {
-      this.scheduleService.removeEditor();
-    }
   }
 }

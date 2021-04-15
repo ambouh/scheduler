@@ -2,6 +2,7 @@ import {Component, ComponentFactoryResolver, Input, OnInit} from '@angular/core'
 import {Employee} from '../../models/employee';
 import {ScheduleService} from '../../services/schedule.service';
 import {AddShiftComponent} from '../add-shift/add-shift.component';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-schedule-view',
@@ -9,25 +10,19 @@ import {AddShiftComponent} from '../add-shift/add-shift.component';
   styleUrls: ['./schedule-view.component.scss']
 })
 export class ScheduleViewComponent implements OnInit {
-  @Input() employee: Employee;
-  @Input() removeEditor: () => void;
-  constructor(private CFR: ComponentFactoryResolver,
-              private scheduleService: ScheduleService) { }
+  employee: Employee;
+  id: number;
+  sub: any;
+  constructor(private scheduleService: ScheduleService,
+              private activatedRoute: ActivatedRoute,
+              private router: Router,
+              ) { }
 
   ngOnInit(): void {
-  }
-
-
-  removeScheduleView() {
-    this.scheduleService.removeScheduleView();
-  }
-
-  displayAddShift() {
-    if (!this.scheduleService.isDisplayingEditor) {
-      this.scheduleService.setIsDisplayingEditor(true);
-      const componentFactory = this.CFR.resolveComponentFactory(AddShiftComponent);
-      const childComponentRef = this.scheduleService.editorRef.createComponent(componentFactory);
-      childComponentRef.instance.employee = this.employee;
+    this.id = this.activatedRoute.snapshot.params.id;
+    const emp = this.scheduleService.findEmployee(this.id);
+    if (emp != null) {
+      this.employee = emp;
     }
   }
 }

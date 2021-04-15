@@ -31,41 +31,11 @@ export class ScheduleService {
       ]
     }
   ];
-  // SCHEDULE-VIEW
-  isDisplayingScheduleView: boolean;
-  scheduleViewRef: ViewContainerRef;
-  // ADD SHIFT
-  isDisplayingEditor: boolean;
-  editorRef: ViewContainerRef;
    // CONSTRUCTOR
   constructor() {
     this.dataStore = {
       employees: this.emp
     };
-    this.isDisplayingScheduleView = false;
-    this.isDisplayingEditor = false;
-  }
-  // SCHEDULE-VIEW
-  setIsDisplayingScheduleView(result: boolean) {
-    this.isDisplayingScheduleView = result;
-  }
-  setScheduleViewRef(ref: ViewContainerRef){
-    this.scheduleViewRef = ref;
-  }
-  removeScheduleView(){
-    this.scheduleViewRef.detach(0);
-    this.setIsDisplayingScheduleView(false);
-  }
-  // ADD-EDITOR
-  setIsDisplayingEditor(result: boolean) {
-    this.isDisplayingEditor = result;
-  }
-  setEditorRef(ref: ViewContainerRef) {
-    this.editorRef = ref;
-  }
-  removeEditor(){
-    this.editorRef.remove(0);
-    this.setIsDisplayingEditor(false);
   }
   // BUSINESS-LOGIC STUFF
   newEmpID(): number {

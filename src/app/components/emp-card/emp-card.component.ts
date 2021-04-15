@@ -26,20 +26,4 @@ export class EmpCardComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  displayScheduleView() {
-    if (!this.scheduleService.isDisplayingScheduleView) {
-      this.scheduleService.setIsDisplayingScheduleView(true);
-      if ( this.employee != null) {
-        const componentFactory = this.CFR.resolveComponentFactory(ScheduleViewComponent);
-        const childComponentRef =
-          this.scheduleService.scheduleViewRef.createComponent(componentFactory);
-        childComponentRef.instance.employee = this.employee;
-      }
-    } else {
-      this.scheduleService.removeScheduleView();
-      this.displayScheduleView();
-    }
-  }
-
-
 }

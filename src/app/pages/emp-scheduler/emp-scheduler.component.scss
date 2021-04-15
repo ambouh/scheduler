@@ -20,12 +20,29 @@
     display: flex;
     flex-direction: row;
 
-    .editor {
+    .schedule-view-wrapper {
+      width: 400px;
+      min-height: 450px;
+      border: 1px solid #383838;
+      border-radius: 15px;
+      margin: 5px 15px 15px 0;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .editor-wrapper {
       width: 500px;
       min-height: 450px;
       border: 5px solid tomato;
       border-radius: 15px;
       margin: 5px 15px 15px 15px;
+      padding-top: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
   }
+
+
 }

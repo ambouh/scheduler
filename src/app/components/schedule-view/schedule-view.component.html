@@ -1,15 +1,17 @@
 <div class="schedule-view">
   <p>
-    <button mat-button color="primary" aria-label="remove schedule view"
+<!--    <button mat-button color="primary" aria-label="remove schedule view"
             (click)="removeScheduleView()" class="cancel">
       <mat-icon>clear</mat-icon>
-    </button>
+    </button>-->
   </p>
   <p>
     <span class="name">{{this.employee.last + " " + this.employee.first}}</span> schedule
 
     <button mat-mini-fab color="primary" aria-label="display add shift form"
-            (click)="displayAddShift()" class="add-shift">
+            [routerLink]="[{ outlets: { editor: ['shift'] } }]"
+
+            class="add-shift">
       <mat-icon >add</mat-icon>
     </button>
   </p>

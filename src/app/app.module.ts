@@ -18,11 +18,25 @@ import { EmpCardComponent } from './components/emp-card/emp-card.component';
 import { EmpCardListComponent } from './components/emp-card-list/emp-card-list.component';
 import { ScheduleViewComponent } from './components/schedule-view/schedule-view.component';
 import { SearchEmpComponent } from './components/search-emp/search-emp.component';
+import { EditorComponent } from './components/editor/editor.component';
+import {MainModule} from './pages/main/main.module';
 
 const routes: Routes = [
-  {path: '', loadChildren: () => import('./pages/main/main.module').then(m => m.MainModule) },
+  {
+    path: '', component: MainComponent,
+    children: [
+      {path: 'dashboard', component: EmpSchedulerComponent,
+        children: [
+          {path: 'register', component: RegisterEmpComponent, outlet: 'editor' },
+          {path: 'shift', component: AddShiftComponent, outlet: 'editor' },
+          {path: ':id', component: ScheduleViewComponent, outlet: 'schedule' }
+        ]
+      },
+      {path: '', redirectTo: 'dashboard', pathMatch: 'full' }
+    ]
+  },
   {path: 'demo', component: PlaygroundComponent},
-  {path: '**', redirectTo: ''}
+  {path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
 @NgModule({
@@ -36,7 +50,8 @@ const routes: Routes = [
     EmpCardComponent,
     EmpCardListComponent,
     ScheduleViewComponent,
-    SearchEmpComponent
+    SearchEmpComponent,
+    EditorComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +59,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     MaterialModule,
     RouterModule.forRoot(routes),
+    MainModule,
     ReactiveFormsModule
   ],
   providers: [

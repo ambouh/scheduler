@@ -17,7 +17,6 @@ export class AddShiftComponent implements OnInit {
     end: ['']
   });
   @Input() employee: Employee; // IMPORTED FROM PARENT COMPONENT
-  @Input() removeEditor: () => void;
   constructor(private scheduleService: ScheduleService, private fb: FormBuilder) { }
   @Output() changed = new EventEmitter();
   ngOnInit(): void {
@@ -41,11 +40,7 @@ export class AddShiftComponent implements OnInit {
 
     if (emp != null) {
       this.scheduleService.addShift(emp, newShift);
-      this.removeEdit();
     }
-  }
-  removeEdit(){
-    this.scheduleService.removeEditor();
   }
 
 }

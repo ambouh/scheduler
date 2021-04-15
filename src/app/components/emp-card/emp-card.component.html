@@ -6,7 +6,8 @@
   <span class="position">EMPLOYEE</span>
 
   <button mat-stroked-button color="primary" aria-label="display add shift form"
-          (click)="this.displayScheduleView()">
+          [routerLink]="[{ outlets: { schedule: [employee.id] } }]"
+  >
     view schedule
   </button>
 </mat-card>

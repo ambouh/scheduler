@@ -5,9 +5,16 @@
   </div>
   <app-emp-card-list></app-emp-card-list>
   <div class="schedule-view-editor">
-    <div #appendHere class="schedule-view"></div>
-    <div #appendEditor class="editor"></div>
+    <div class="schedule-view-wrapper">
+      <router-outlet name="schedule"></router-outlet>
+    </div>
+    <div class="editor-wrapper">
+      <router-outlet name="editor">
+        <span class="page-desc">{{this.desc}}</span>
+      </router-outlet>
+    </div>
   </div>
+
 </section>
 
 
