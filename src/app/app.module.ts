@@ -18,7 +18,6 @@ import { EmpCardComponent } from './components/emp-card/emp-card.component';
 import { EmpCardListComponent } from './components/emp-card-list/emp-card-list.component';
 import { ScheduleViewComponent } from './components/schedule-view/schedule-view.component';
 import { SearchEmpComponent } from './components/search-emp/search-emp.component';
-import { EditorComponent } from './components/editor/editor.component';
 import {MainModule} from './pages/main/main.module';
 
 const routes: Routes = [
@@ -51,7 +50,6 @@ const routes: Routes = [
     EmpCardListComponent,
     ScheduleViewComponent,
     SearchEmpComponent,
-    EditorComponent
   ],
   imports: [
     BrowserModule,
