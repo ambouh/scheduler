@@ -43,6 +43,7 @@ export class ScheduleService {
       employees: this.emp
     };
     this.isDisplayingScheduleView = false;
+    this.isDisplayingEditor = false;
   }
   // SCHEDULE-VIEW
   setIsDisplayingScheduleView(result: boolean) {
@@ -63,7 +64,7 @@ export class ScheduleService {
     this.editorRef = ref;
   }
   removeEditor(){
-    this.editorRef.clear();
+    this.editorRef.remove(0);
     this.setIsDisplayingEditor(false);
   }
   // BUSINESS-LOGIC STUFF

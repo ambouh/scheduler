@@ -8,6 +8,8 @@ import {ScheduleService} from '../../services/schedule.service';
   styleUrls: ['./emp-scheduler.component.scss']
 })
 export class EmpSchedulerComponent implements OnInit, AfterViewInit {
+  desc: string;
+  title: string;
 
   constructor(private serv: ScheduleService) { }
   @ViewChild('appendHere', { read: ViewContainerRef })
@@ -16,6 +18,8 @@ export class EmpSchedulerComponent implements OnInit, AfterViewInit {
   editor: ViewContainerRef;
   isDisplayingScheduleView: boolean;
   ngOnInit(): void {
+    this.desc = 'Register an employee and add shifts';
+    this.title = 'SCHEDULER';
    }
 
   ngAfterViewInit(): void {

@@ -1,0 +1,27 @@
+.card-list-container {
+  margin: 25px;
+  margin-left: 0;
+  width: 825px;
+  height: 230px;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+  button {
+    margin: 20px;
+    background: #488dc3;
+    box-shadow: none;
+  }
+  .card-list-content {
+    width: 600px;
+    // outline: 1px dashed darkcyan;
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    border-right: 2px solid #62666a;
+    border-left: 2px solid #62666a;
+    border-radius: 5px;
+  }
+}
+

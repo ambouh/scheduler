@@ -1,7 +1,9 @@
-<mat-card>
-  First Name: {{employee.first}}
-  Last Name: {{employee.last}}
-  EMPLOYEE
+<mat-card class="emp-card">
+  <button mat-fab disabled color="primary" aria-label="Example icon button with a delete icon">
+    <mat-icon>person</mat-icon>
+  </button>
+  <span class="emp-name">{{employee.first}} {{employee.last}}</span>
+  <span class="position">EMPLOYEE</span>
 
   <button mat-stroked-button color="primary" aria-label="display add shift form"
           (click)="this.displayScheduleView()">

@@ -1,0 +1,42 @@
+.schedule-view {
+  width: 300px;
+  min-height: 450px;
+  border: 1px solid #383838;
+  border-radius: 15px;
+  margin: 5px 15px 15px 0;
+  padding: 10px;
+
+  mat-card.mat-card {
+    box-shadow: none !important;
+    border: 1px solid #383838;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    background: #f7f8fa;
+  }
+  .cancel {
+    color: #488dc3;
+  }
+  .name {
+    font-size: 18px;
+    font-weight: lighter;
+    text-transform: uppercase;
+  }
+  .add-shift {
+    margin-left: 10px;
+    background: #488dc3;
+    box-shadow: none;
+  }
+
+  .sch-date {
+    display: block;
+    font-weight: 600;
+    font-size: 17px;
+  }
+  .sch-time {
+    font-size: 11px;
+    margin-top: 10px;
+  }
+  .sch-period {
+    font-weight: lighter;
+  }
+}

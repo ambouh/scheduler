@@ -1,6 +1,13 @@
-<app-emp-card-list></app-emp-card-list>
-<div class="schedule-view">
-  <div #appendHere></div>
-  <div #appendEditor></div>
-</div>
+<section class="scheduler">
+  <div class="page-title-desc">
+    <span class="page-title">{{this.title}}</span>
+    <span class="page-desc">{{this.desc}}</span>
+  </div>
+  <app-emp-card-list></app-emp-card-list>
+  <div class="schedule-view-editor">
+    <div #appendHere class="schedule-view"></div>
+    <div #appendEditor class="editor"></div>
+  </div>
+</section>
+
 

@@ -1,0 +1,18 @@
+.register-emp {
+  form {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    mat-form-field {
+      margin: 10px;
+    }
+  }
+
+  .add-employee-btn {
+    display: inline-block;
+    background: #13bf60;
+    box-shadow: none;
+    margin: 10px auto;
+  }
+}
+

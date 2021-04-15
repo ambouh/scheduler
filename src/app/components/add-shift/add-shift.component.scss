@@ -1,0 +1,14 @@
+.example-form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  mat-form-field {
+    margin: 10px;
+  }
+
+  .add-shift-btn {
+    background: #13bf60;
+    box-shadow: none;
+    margin: 10px auto;
+  }
+}
