@@ -1,5 +1,7 @@
+import {Time} from './time';
+
 export class Shift {
   date: string;
-  startTime: string;
-  endTime: string;
+  startTime: Time;
+  endTime: Time;
 }

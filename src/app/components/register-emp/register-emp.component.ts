@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ScheduleService} from '../../services/schedule.service';
 import {Employee} from '../../models/employee';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-register-emp',
@@ -17,7 +18,7 @@ export class RegisterEmpComponent implements OnInit {
     id: [''],
   });
 
-  constructor(private scheduleService: ScheduleService, private fb: FormBuilder) { }
+  constructor(private scheduleService: ScheduleService, private fb: FormBuilder, private  route: Router) { }
   ngOnInit(): void {
   }
   get first(): any {
@@ -35,4 +36,11 @@ export class RegisterEmpComponent implements OnInit {
     this.scheduleService.addEmployee(newEmp);
   }
 
+  removeRegister(): void {
+    this.route.navigate(['scheduler', {outlets: {editor: null}}]);
+  }
+
+  addEmployeeKey(event: KeyboardEvent): void {
+    this.addEmployee();
+  }
 }

@@ -6,7 +6,7 @@
   <span class="position">EMPLOYEE</span>
 
   <button mat-stroked-button color="primary" aria-label="display add shift form"
-          [routerLink]="[{ outlets: { schedule: [employee.id] } }]"
+          (click)="selectEmployee()"
   >
     view schedule
   </button>

@@ -1,4 +1,6 @@
 <section class="register-emp">
+
+
   <form class="example-form" [formGroup]="queryForm" >
     <mat-form-field class="example-full-width">
       <mat-label>First Name</mat-label>
@@ -8,9 +10,15 @@
       <mat-label>Last Name</mat-label>
       <input type="text" matInput formControlName="last" placeholder="Ex. Doe">
     </mat-form-field>
-    <button mat-fab color="primary" aria-label="add employee"
-            (click)="addEmployee()" class="add-employee-btn">
-      <mat-icon>done</mat-icon>
-    </button>
+    <p>
+      <button mat-fab color="accent" aria-label="remove schedule view"
+              (click)="removeRegister()" class="cancel">
+        <mat-icon>clear</mat-icon>
+      </button>
+      <button mat-fab color="primary" aria-label="add employee"
+              (click)="addEmployee()" class="add-employee-btn" (keyup)="addEmployeeKey($event)">
+        <mat-icon>done</mat-icon>
+      </button>
+    </p>
   </form>
 </section>

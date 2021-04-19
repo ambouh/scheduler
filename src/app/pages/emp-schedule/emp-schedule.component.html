@@ -1,0 +1,34 @@
+<section class="scheduler">
+  <div class="page-title-desc">
+    <span class="page-title">{{this.title}}</span>
+    <span class="page-desc">{{this.desc}}</span>
+  </div>
+  <div>
+    <form class="example-form" [formGroup]="myControl" >
+      <mat-form-field appearance="fill">
+        <mat-label>Select an employee</mat-label>
+        <mat-select formControlName="selectedEmployee" (selectionChange)="this.onSelectedChange()">
+          <mat-option *ngFor="let emp of employees"
+            [value]="emp.id">{{emp.first + ' ' + emp.last}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </form>
+  </div>
+  <div class="schedule-view-editor">
+    <div class="schedule-view-wrapper">
+      <ng-template [ngIf]="!this.showSchedule">
+        <span class="page-desc">{{this.desc}} </span>
+      </ng-template>
+      <ng-template [ngIf]="this.showSchedule">
+<!--        <p>
+          <button mat-button color="primary" aria-label="remove schedule view"
+                  class="cancel">
+            <mat-icon>clear</mat-icon>
+          </button>
+        </p>-->
+        <app-schedule-view [employee]="this.employee"></app-schedule-view>
+      </ng-template>
+    </div>
+  </div>
+</section>

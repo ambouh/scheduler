@@ -1,2 +1,19 @@
-<div class="header"> </div>
+<div class="header">
+<div *ngIf="!hasRoute('/dashboard')">
+  <button mat-stroked-button
+          (click)="gotoDashboard()"
+          class="nav-btn"
+  >View mode
+    <mat-icon>visibility</mat-icon>
+  </button>
+</div>
+  <div *ngIf="hasRoute('/dashboard')">
+    <button mat-stroked-button
+            (click)="gotoScheduler()"
+            class="nav-btn"
+    >Edit mode
+      <mat-icon>edit</mat-icon>
+    </button>
+  </div>
+</div>
 <router-outlet></router-outlet>

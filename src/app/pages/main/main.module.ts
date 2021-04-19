@@ -7,17 +7,18 @@ import {ScheduleService} from '../../services/schedule.service';
 import {RegisterEmpComponent} from '../../components/register-emp/register-emp.component';
 import {AddShiftComponent} from '../../components/add-shift/add-shift.component';
 import {ScheduleViewComponent} from '../../components/schedule-view/schedule-view.component';
+import {EmpScheduleComponent} from '../emp-schedule/emp-schedule.component';
 const routes: Routes = [
   {
     path: '', component: MainComponent,
     children: [
-      {path: 'dashboard', component: EmpSchedulerComponent,
+      {path: 'scheduler', component: EmpSchedulerComponent,
         children: [
           {path: 'register', component: RegisterEmpComponent, outlet: 'editor'},
-          {path: 'shift', component: AddShiftComponent, outlet: 'editor' },
-          {path: ':id', component: ScheduleViewComponent, outlet: 'schedule' }
+          {path: 'shift', component: AddShiftComponent, outlet: 'editor' }
         ]
       },
+      {path: 'dashboard', component: EmpScheduleComponent},
       {path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   },

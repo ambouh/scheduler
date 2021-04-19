@@ -6,11 +6,22 @@
   <app-emp-card-list></app-emp-card-list>
   <div class="schedule-view-editor">
     <div class="schedule-view-wrapper">
-      <router-outlet name="schedule"></router-outlet>
+      <ng-template [ngIf]="!this.showSchedule">
+        <span class="page-desc">Select an employee and edit their schedule! </span>
+      </ng-template>
+      <ng-template [ngIf]="this.showSchedule">
+        <p>
+          <button mat-button color="primary" aria-label="remove schedule view"
+                  (click)="removeScheduleView()" class="cancel">
+            <mat-icon>clear</mat-icon>
+          </button>
+        </p>
+        <app-schedule-view></app-schedule-view>
+      </ng-template>
     </div>
     <div class="editor-wrapper">
       <router-outlet name="editor">
-        <span class="page-desc">{{this.desc}}</span>
+        <span class="page-desc">Hey Boss! Register an employee or add an additional shift here. ;)</span>
       </router-outlet>
     </div>
   </div>

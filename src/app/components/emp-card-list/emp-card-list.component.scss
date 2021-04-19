@@ -1,7 +1,7 @@
 .card-list-container {
   margin: 25px;
   margin-left: 0;
-  width: 825px;
+  width: 870px;
   height: 230px;
   display: flex;
   flex-direction: row;
@@ -13,7 +13,7 @@
     box-shadow: none;
   }
   .card-list-content {
-    width: 600px;
+    min-width: 870px;
     // outline: 1px dashed darkcyan;
     display: flex;
     flex-direction: row;

@@ -1,29 +1,28 @@
 <div class="schedule-view">
-  <p>
-<!--    <button mat-button color="primary" aria-label="remove schedule view"
-            (click)="removeScheduleView()" class="cancel">
-      <mat-icon>clear</mat-icon>
-    </button>-->
-  </p>
-  <p>
-    <span class="name">{{this.employee.last + " " + this.employee.first}}</span> schedule
+   <ng-template [ngIf]="(this.employee.id !== 0) ">
+     <p>
 
-    <button mat-mini-fab color="primary" aria-label="display add shift form"
-            [routerLink]="[{ outlets: { editor: ['shift'] } }]"
+       <span class="name">{{this.employee.first + " " + this.employee.last}}</span> schedule
 
-            class="add-shift">
-      <mat-icon >add</mat-icon>
-    </button>
-  </p>
+       <ng-template [ngIf]="hasRoute('scheduler')">
+         <button mat-mini-fab color="primary" aria-label="display add shift form"
+                 [routerLink]="[{ outlets: { editor: ['shift'] } }]"
 
-  <div *ngFor="let shift of this.employee.schedule">
+                 class="add-shift">
+           <mat-icon >add</mat-icon>
+         </button>
+       </ng-template>
 
-    <mat-card>
-      <span class="sch-date">{{shift.date}}</span>
-      <br>
-      <span class="sch-time">TIME </span><br>
-       <span clas="sch-period"> {{shift.startTime}} - {{shift.endTime}}</span>
-    </mat-card>
-  </div>
+     </p>
+     <div *ngFor="let shift of this.employee.schedule">
+
+       <mat-card>
+         <span class="sch-date">{{shift.date}}</span>
+         <br>
+         <span class="sch-time">TIME </span><br>
+         <span clas="sch-period"> {{shift.startTime.desc}} - {{shift.endTime.desc}}</span>
+       </mat-card>
+     </div>
+   </ng-template>
 </div>
 
