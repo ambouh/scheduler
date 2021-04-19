@@ -17,7 +17,7 @@ export class EmpSchedulerComponent implements OnInit {
   ngOnInit(): void {
     this.desc = 'Register an employee and add shifts';
     this.title = 'SCHEDULER';
-    this.serv.seletectEmp.subscribe( (data: Employee) => {
+    this.serv.selectedEmp.subscribe( (data: Employee) => {
         this.employee = data;
         if (data !== null) {
            this.showSchedule = this.employee.id !== 0;

@@ -46,7 +46,7 @@ export class AddShiftComponent implements OnInit {
   // @Input() employee: Employee; // IMPORTED FROM PARENT COMPONENT
   constructor(private scheduleService: ScheduleService, private fb: FormBuilder) { }
   ngOnInit(): void {
-    this.scheduleService.seletectEmp.subscribe(data => {
+    this.scheduleService.selectedEmp.subscribe(data => {
       if (data.id !== 0) {this.employee = data; }
     });
   }

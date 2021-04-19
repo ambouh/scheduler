@@ -17,8 +17,10 @@ export class ScheduleViewComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
-    this.scheduleService.seletectEmp.subscribe( data => {
+    this.scheduleService.selectedEmp.subscribe( (data: Employee) => {
+      if (data !== null && data.id !== 0) {
         this.employee = data;
+      }
     });
   }
 

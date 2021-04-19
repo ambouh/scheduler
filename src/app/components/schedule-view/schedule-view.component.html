@@ -1,5 +1,4 @@
 <div class="schedule-view">
-   <ng-template [ngIf]="(this.employee.id !== 0) ">
      <p>
 
        <span class="name">{{this.employee.first + " " + this.employee.last}}</span> schedule
@@ -23,6 +22,6 @@
          <span clas="sch-period"> {{shift.startTime.desc}} - {{shift.endTime.desc}}</span>
        </mat-card>
      </div>
-   </ng-template>
+
 </div>
 

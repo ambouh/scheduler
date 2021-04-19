@@ -27,23 +27,17 @@ export class EmpScheduleComponent implements OnInit {
     this.title = 'DASHBOARD';
     this.desc = 'select an employee and view their schedule ';
     this.employees = this.serv.loadEmployees();
-    this.serv.seletectEmp.subscribe( data => {
-      if (data !== null ) {
-        this.employee = data;
-        this.showSchedule = this.employee.id !== 0;
-      }
-    });
-
   }
   get selectedEmp(): any {
     return this.myControl.get('selectedEmployee');
   }
 
   onSelectedChange(): void {
-    const id = this.selectedEmp.value;
-    const emp = this.serv.findEmployee(id);
-    this.serv.seletectEmp.subscribe( data => {
-      if (data !== null ) {this.employee = data; }
+    const emp = this.selectedEmp.value;
+    console.log('selected: ', emp);
+    this.serv.selectEmployee(emp);
+    this.serv.selectedEmp.subscribe( (data: Employee) => {
+      this.showSchedule = data.id !== 0;
     });
   }
 }

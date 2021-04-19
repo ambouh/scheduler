@@ -15,12 +15,7 @@ import {AddShiftComponent} from '../../components/add-shift/add-shift.component'
 })
 export class PlaygroundComponent implements OnInit {
   constructor(private scheduleService: ScheduleService, private fb: FormBuilder, private CFR: ComponentFactoryResolver) {
-
   }
-  employee: Employee | null;
   ngOnInit(): void {
-    if (this.scheduleService.findEmployee(1) !== null) {
-    this.employee = this.scheduleService.findEmployee(1);
-    }
   }
 }

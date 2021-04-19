@@ -32,21 +32,21 @@ export class ScheduleService {
     }
   ];
   /*selectedEmp: Employee;*/
-  private selectedEmp: BehaviorSubject<Employee>;
+  private _selectedEmp: BehaviorSubject<Employee>;
    // CONSTRUCTOR
   constructor() {
     this.dataStore = {
       employees: this.emp
     };
     const emptyEmp: Employee = {email: '', first: '', id: 0, last: '', schedule: []};
-    this.selectedEmp = new BehaviorSubject<Employee>(emptyEmp);
+    this._selectedEmp = new BehaviorSubject<Employee>(emptyEmp);
   }
   // SELECTED EMPLOYEE
-  get seletectEmp(): Observable<Employee> {
-    return this.selectedEmp.asObservable();
+  get selectedEmp(): Observable<Employee> {
+    return this._selectedEmp.asObservable();
   }
   selectEmployee(emp: Employee): void {
-    this.selectedEmp.next(emp);
+    this._selectedEmp.next(emp);
   }
   // BUSINESS-LOGIC STUFF
   newEmpID(): number {

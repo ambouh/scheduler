@@ -9,7 +9,7 @@
         <mat-label>Select an employee</mat-label>
         <mat-select formControlName="selectedEmployee" (selectionChange)="this.onSelectedChange()">
           <mat-option *ngFor="let emp of employees"
-            [value]="emp.id">{{emp.first + ' ' + emp.last}}</mat-option>
+            [value]="emp">{{emp.first + ' ' + emp.last}}</mat-option>
         </mat-select>
       </mat-form-field>
 
@@ -27,7 +27,7 @@
             <mat-icon>clear</mat-icon>
           </button>
         </p>-->
-        <app-schedule-view [employee]="this.employee"></app-schedule-view>
+        <app-schedule-view></app-schedule-view>
       </ng-template>
     </div>
   </div>
