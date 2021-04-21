@@ -1,22 +1,47 @@
 <section class="register-emp">
 
 
-  <form class="example-form" [formGroup]="queryForm" >
+  <form class="example-form" [formGroup]="queryForm"  (ngSubmit)="addEmployee()">
     <mat-form-field class="example-full-width">
       <mat-label>First Name</mat-label>
       <input type="text" matInput formControlName="first" placeholder="Ex. John">
     </mat-form-field>
+    <mat-error *ngIf="first && first.invalid && (first.touched || first.dirty)">
+      <div *ngIf="first.errors.required">
+        First name is required.
+      </div>
+    </mat-error>
     <mat-form-field class="example-full-width">
       <mat-label>Last Name</mat-label>
       <input type="text" matInput formControlName="last" placeholder="Ex. Doe">
     </mat-form-field>
+    <mat-error *ngIf="last && last.invalid && (last.touched || last.dirty)">
+      <div *ngIf="first.errors.required">
+        Last name is required.
+      </div>
+    </mat-error>
+    <mat-form-field class="example-full-width">
+      <mat-label>Employee ID</mat-label>
+      <input type="number" matInput formControlName="id" placeholder="Ex. 123">
+    </mat-form-field>
+    <mat-error *ngIf="id && id.invalid && (id.touched || id.dirty)">
+      <div *ngIf="id.errors.required">
+        Employee ID is required.
+      </div>
+    </mat-error>
+    <mat-form-field class="example-full-width">
+      <mat-label>Email</mat-label>
+      <input type="email" matInput formControlName="email" placeholder="Ex. johndoe@email.com">
+    </mat-form-field>
+    <mat-hint *ngIf="email.invalid && email.touched ">
+        Correct email format includes an @ symbol
+    </mat-hint>
     <p>
       <button mat-fab color="accent" aria-label="remove schedule view"
-              (click)="removeRegister()" class="cancel">
+              (click)="removeRegister()" class="cancel" type="reset">
         <mat-icon>clear</mat-icon>
       </button>
-      <button mat-fab color="primary" aria-label="add employee"
-              (click)="addEmployee()" class="add-employee-btn" (keyup)="addEmployeeKey($event)">
+      <button mat-fab color="primary" aria-label="add employee" type="submit" class="add-employee-btn">
         <mat-icon>done</mat-icon>
       </button>
     </p>

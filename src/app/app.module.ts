@@ -20,6 +20,7 @@ import { ScheduleViewComponent } from './components/schedule-view/schedule-view.
 import { SearchEmpComponent } from './components/search-emp/search-emp.component';
 import {MainModule} from './pages/main/main.module';
 import { EmpScheduleComponent } from './pages/emp-schedule/emp-schedule.component';
+import { TimeConstraintDirective } from './components/add-shift/time-constraint.directive';
 
 const routes: Routes = [
   {
@@ -52,6 +53,7 @@ const routes: Routes = [
     ScheduleViewComponent,
     SearchEmpComponent,
     EmpScheduleComponent,
+    TimeConstraintDirective,
   ],
   imports: [
     BrowserModule,
@@ -63,7 +65,8 @@ const routes: Routes = [
     ReactiveFormsModule
   ],
   providers: [
-    ScheduleService
+    ScheduleService,
+    TimeConstraintDirective
   ],
   bootstrap: [AppComponent]
 })

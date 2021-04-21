@@ -8,25 +8,25 @@
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 
+  <div formGroupName="time">
+    <mat-form-field appearance="outline">
+      <mat-label>Start time</mat-label>
+      <mat-select formControlName="start">
+        <mat-option *ngFor="let hour of hours" [value]="hour">{{this.hour.desc}}</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Start time</mat-label>
-    <mat-select formControlName="start">
-      <mat-option *ngFor="let hour of hours" [value]="hour">{{this.hour.desc}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field appearance="outline">
-    <mat-label>End time</mat-label>
-    <mat-select formControlName="end" >
-      <mat-option *ngFor="let hour of hours" [value]="hour">{{this.hour.desc}}</mat-option>
-    </mat-select>
-    <mat-hint style="color: red;"
-    *ngIf="this.start.value > this.end.value">
+    <mat-form-field appearance="outline">
+      <mat-label>End time</mat-label>
+      <mat-select formControlName="end" >
+        <mat-option *ngFor="let hour of hours" [value]="hour">{{this.hour.desc}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-error style="color: red;"
+               *ngIf="this.time.errors?.time">
       'End-time' cannot happen before 'Start-time'
-    </mat-hint>
-  </mat-form-field>
-
+    </mat-error>
+  </div>
 
   <button mat-mini-fab color="primary" aria-label="add employee"
           (click)="addShift()"  class="add-shift-btn">

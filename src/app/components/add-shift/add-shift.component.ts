@@ -1,20 +1,26 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {formatDate} from '@angular/common';
 import {Shift} from '../../models/shift';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 import {ScheduleService} from '../../services/schedule.service';
 import {Employee} from '../../models/employee';
+import {TimeConstraintDirective} from './time-constraint.directive';
+
 
 @Component({
   selector: 'app-add-shift',
   templateUrl: './add-shift.component.html',
   styleUrls: ['./add-shift.component.scss']
 })
+
 export class AddShiftComponent implements OnInit {
+
   shiftForm: FormGroup = this.fb.group( {
-    date: [''],
-    start: [''],
-    end: ['']
+    date: ['', [Validators.required]],
+    time: this.fb.group({
+      start: ['', Validators.required],
+      end: ['', Validators.required]
+    }, {validators: this.timeConstraint.validate})
   });
   hours = [
     { id: 1, desc: '01 AM'},
@@ -43,8 +49,7 @@ export class AddShiftComponent implements OnInit {
     { id: 24, desc: '12 AM'},
   ];
   employee: Employee;
-  // @Input() employee: Employee; // IMPORTED FROM PARENT COMPONENT
-  constructor(private scheduleService: ScheduleService, private fb: FormBuilder) { }
+  constructor(private scheduleService: ScheduleService, private fb: FormBuilder, private timeConstraint: TimeConstraintDirective) { }
   ngOnInit(): void {
     this.scheduleService.selectedEmp.subscribe(data => {
       if (data.id !== 0) {this.employee = data; }
@@ -54,22 +59,23 @@ export class AddShiftComponent implements OnInit {
     return this.shiftForm.get('date');
   }
   get start(): any {
-    return this.shiftForm.get('start');
+    return this.shiftForm.get('time')?.get('start');
   }
   get end(): any {
-    return this.shiftForm.get('end');
+    return this.shiftForm.get('time')?.get('end');
+  }
+  get time(): any {
+    return this.shiftForm.get('time');
   }
   addShift(): void {
+    const emp = this.employee;
+    if (emp != null && !this.time.errors?.time) {
     const dateVal = formatDate(this.date.value, 'yyyy-MM-dd', 'en_US' );
     const newShift: Shift = new Shift();
     newShift.date = dateVal;
     newShift.startTime = this.start.value;
     newShift.endTime = this.end.value;
-    const emp = this.employee; // this.scheduleService.findEmployee(1);
-
-    if (emp != null) {
-      this.scheduleService.addShift(emp, newShift);
+    this.scheduleService.addShift(emp, newShift);
     }
   }
-
 }

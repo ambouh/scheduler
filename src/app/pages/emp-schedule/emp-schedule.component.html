@@ -5,7 +5,7 @@
   </div>
   <div>
     <form class="example-form" [formGroup]="myControl" >
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="outline">
         <mat-label>Select an employee</mat-label>
         <mat-select formControlName="selectedEmployee" (selectionChange)="this.onSelectedChange()">
           <mat-option *ngFor="let emp of employees"

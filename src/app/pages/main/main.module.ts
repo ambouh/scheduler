@@ -8,6 +8,7 @@ import {RegisterEmpComponent} from '../../components/register-emp/register-emp.c
 import {AddShiftComponent} from '../../components/add-shift/add-shift.component';
 import {ScheduleViewComponent} from '../../components/schedule-view/schedule-view.component';
 import {EmpScheduleComponent} from '../emp-schedule/emp-schedule.component';
+import {TimeConstraintDirective} from '../../components/add-shift/time-constraint.directive';
 const routes: Routes = [
   {
     path: '', component: MainComponent,
@@ -30,7 +31,8 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   providers: [
-    ScheduleService
+    ScheduleService,
+    TimeConstraintDirective
   ]
 })
 export class MainModule { }

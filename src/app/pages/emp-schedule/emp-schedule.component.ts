@@ -3,8 +3,6 @@ import {ScheduleService} from '../../services/schedule.service';
 import {Router} from '@angular/router';
 import {Employee} from '../../models/employee';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-emp-schedule',

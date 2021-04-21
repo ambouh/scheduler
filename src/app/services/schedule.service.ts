@@ -62,7 +62,7 @@ export class ScheduleService {
   }
   addShift(employee: Employee, newShift: Shift): void{
     employee.schedule.push(newShift);
-    console.log(employee.schedule);
+    // console.log(employee.schedule);
   }
   loadEmployees() {
     return this.dataStore.employees;

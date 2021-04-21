@@ -21,7 +21,7 @@ export class EmpCardComponent implements OnInit {
   }
 
   selectEmployee() {
-    console.log('employee', this.employee);
+    // console.log('employee', this.employee);
     this.scheduleService.selectEmployee(this.employee);
   }
 }
